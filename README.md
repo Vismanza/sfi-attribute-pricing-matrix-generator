@@ -11,6 +11,19 @@ At this point you can just download the 'ABP Data' tab as a csv from the 'File' 
 
 Example [Sheet](https://docs.google.com/spreadsheets/d/1l-b3gRsfO4GduV6umusO6YHpUKdF45sxoooVaE4QgxY/edit?usp=sharing).
 
+## Get Started
+
+1. Navigate to the [Sheet](https://docs.google.com/spreadsheets/d/1l-b3gRsfO4GduV6umusO6YHpUKdF45sxoooVaE4QgxY/edit?usp=sharing) and make your own copy;
+2. Navigate to Externsions > Apps Script;
+3. With 'Code.gs' open click 'Run';
+4. Click 'Review permissions' on the dialogue box that appears;
+5. Select your account to authorise 'ABP MAtrix Logic';
+6. Click 'Allow';
+7. Close Apps Script tab;
+8. You should now see a menu item in your Sheet called 'Salesforce Industries'...
+
+From here on out feel free to set your products and attributes and generate sample matrices.
+
 ## Google Sheet Format
 
 You will need a sheet with tabs called:
