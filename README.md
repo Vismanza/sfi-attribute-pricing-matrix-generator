@@ -9,7 +9,7 @@ It is very easy to exceed Sheets limits of more 1M rows so set your expectations
 
 At this point you can just download the 'ABP Data' tab as a csv from the 'File' menu in Sheets.
 
-Example [Sheet]([url](https://docs.google.com/spreadsheets/d/1l-b3gRsfO4GduV6umusO6YHpUKdF45sxoooVaE4QgxY/edit?usp=sharing)).
+Example [Sheet](https://docs.google.com/spreadsheets/d/1l-b3gRsfO4GduV6umusO6YHpUKdF45sxoooVaE4QgxY/edit?usp=sharing).
 
 ## Google Sheet Format
 
