@@ -34,7 +34,7 @@ You will need a sheet with tabs called:
 
 ### Products Tab
 
-The products tab will have one row per product with the relevant pricing configurations. Note that currently any prices not needed must be entered as 0 and margins as 'None'.
+The products tab will have one row per product with the relevant pricing configurations. 
 
 Needs the following headers (first row values):
 - Product Name
