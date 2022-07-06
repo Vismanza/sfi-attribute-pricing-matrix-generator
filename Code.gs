@@ -185,7 +185,13 @@ sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,5).setValue(filter
 }  
 
 function randomInteger(min, max) {
+  if (!min || !max)
+  {
+    return 0
+  }
+  else {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }
 
 function calcCost(price, margin) {
