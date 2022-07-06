@@ -1,9 +1,15 @@
 function onOpen() {
      SpreadsheetApp.getUi().createMenu('Salesforce Industries')
          .addItem('Generate ABP Matrix','generateABP')
+         .addSeparator()
+         .addItem('Append to ABP Matrix','appendABP')
          .addToUi()
 }
-function generateABP() {
+function appendABP() {
+generateABP('Append');
+}
+
+function generateABP(mode) {
 
 var start = new Date();
 
@@ -11,7 +17,8 @@ var start = new Date();
 
 
 // Get Product Array
- var loadProductRange = sheet.getSheetByName('Products').getRange(2,1,sheet.getSheetByName('Products').getLastRow()-1,sheet.getSheetByName('Products').getLastColumn()).getValues();
+ var loadProductRange = sheet.getSheetByName('Products').getRange(2,1,sheet.getSheetByName('Products').getLastRow()-1,sheet.getSheetByName('Products').getLastColumn()).getValues().filter(function(item){return item[0] === true;});
+
  //console.log(loadProductRange);
 
 
@@ -116,11 +123,10 @@ for (q = 0; q < lengthLoadProductRange; q++)
           function(attCombo)
         {
           return[
-              loadProductRange[q][0],
               loadProductRange[q][1],
+              loadProductRange[q][2],
               attCombo[0],
               attCombo[1],
-              loadProductRange[q][2],
               loadProductRange[q][3],
               loadProductRange[q][4],
               loadProductRange[q][5],
@@ -129,7 +135,8 @@ for (q = 0; q < lengthLoadProductRange; q++)
               loadProductRange[q][8],
               loadProductRange[q][9],
               loadProductRange[q][10],
-              loadProductRange[q][11]
+              loadProductRange[q][11],
+              loadProductRange[q][12]
               ];
         }
         );
@@ -148,10 +155,14 @@ calculatedPrices = finalPricedArray.map(calcPrices);
 
 console.log("Priced rows: " + calculatedPrices.length);
 
-// Clear sheet
- var dataSheet = sheet.getSheetByName('ABP Data').clear();
- // Create Headings
-  
+if(!mode){
+
+  mode = "Generate"
+
+  // Clear sheet
+  var dataSheet = sheet.getSheetByName('ABP Data').clear();
+ 
+  // Create Headings
   sheet.getSheetByName('ABP Data').getRange(1,1).setValue('Source Product Name');
   sheet.getSheetByName('ABP Data').getRange(1,2).setValue('Source Product Code');
   sheet.getSheetByName('ABP Data').getRange(1,3).setValue('Characteristic Name');
@@ -167,9 +178,17 @@ console.log("Priced rows: " + calculatedPrices.length);
   sheet.getSheetByName('ABP Data').getRange(1,10).setValue('Usage Cost');
   sheet.getSheetByName('ABP Data').getRange(1,11).setValue('Charge Measurement'); 
 
-// Place array in sheet
+ // Place array in sheet
+ sheet.getSheetByName('ABP Data').getRange(2,1,calculatedPrices.length,calculatedPrices[0].length).setValues(calculatedPrices);
 
-sheet.getSheetByName('ABP Data').getRange(2,1,calculatedPrices.length,calculatedPrices[0].length).setValues(calculatedPrices);
+}
+else if (mode == 'Append'){
+
+ // Append array in sheet
+ sheet.getSheetByName('ABP Data').getRange(sheet.getLastRow() + 1,1,calculatedPrices.length,calculatedPrices[0].length).setValues(calculatedPrices);
+
+}
+
 
 // log and stats
 var end = new Date();
@@ -178,9 +197,11 @@ sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 1,1).setValue(Utilit
 sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,2).setValue(attCount);
 sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,3).setValue(calculatedPrices.length);
 sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,4).setValue(executiontime);
-sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,5).setValue(filterAttValues);
+sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,5).setValue(mode);
+sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,6).setValue(filterAttValues);
 
 
+SpreadsheetApp.getActive().toast("You priced " + calculatedPrices.length + " combinations from " + attCount + " attributes in " + executiontime);
 
 }  
 
