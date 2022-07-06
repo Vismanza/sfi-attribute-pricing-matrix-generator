@@ -14,7 +14,7 @@ Example [Sheet](https://docs.google.com/spreadsheets/d/1l-b3gRsfO4GduV6umusO6YHp
 ## Get Started
 
 1. Navigate to the [Sheet](https://docs.google.com/spreadsheets/d/1l-b3gRsfO4GduV6umusO6YHpUKdF45sxoooVaE4QgxY/edit?usp=sharing) and make your own copy;
-2. Navigate to Externsions > Apps Script;
+2. Navigate to Extensions > Apps Script;
 3. With 'Code.gs' open click 'Run';
 4. Click 'Review permissions' on the dialogue box that appears;
 5. Select your account to authorise 'ABP MAtrix Logic';
