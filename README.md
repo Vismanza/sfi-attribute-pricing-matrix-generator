@@ -37,6 +37,7 @@ You will need a sheet with tabs called:
 The products tab will have one row per product with the relevant pricing configurations. 
 
 Needs the following headers (first row values):
+- Include
 - Product Name
 - Product Code
 - Charge Measurement (ensure that the values exists in your envrionment)
@@ -67,6 +68,7 @@ Needs the following headers (first row values):
 - Attributes Used
 - Combinations Priced
 - Execution Time (seconds)
+- Mode
 - Attributes
 
 
