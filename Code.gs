@@ -48,6 +48,8 @@ var attFirst = attData[0].filter(String);
 var attFirstLength = attFirst.length;
 console.log(attFirstLength - 1 + " attribute values for " + attFirst[0] + " (first attribute)");
 
+//console.log(attFirst);
+
 attSetData = [];
 comboArray = [];
 newComboArray = [];
@@ -103,6 +105,9 @@ filterAttValues = loadAttRange[0].join(";");
 
 var finalAttArray = comboArray.filter(function(item){return item[0] === filterAttValues;});
 
+if(attCount == 1){
+  finalAttArray = attSetData.filter(String);
+}
 
 console.log("Combo'd Attributes: " + filterAttValues);
 //console.log("Final attribute combo array:");
@@ -184,10 +189,22 @@ if(!mode){
 }
 else if (mode == 'Append'){
 
+/*
+// For debug of append row issue
+var lastDataRow = sheet.getSheetByName('ABP Data').getLastRow();
+var rowsPriceArray = calculatedPrices.length;
+var columnsPriceValue = calculatedPrices[0].length;
+
+console.log("lastDataRow: " + lastDataRow);
+console.log("rowsPriceArray: " + rowsPriceArray);
+console.log("columnsPriceValue: " + columnsPriceValue);
+*/
+
  // Append array in sheet
  sheet.getSheetByName('ABP Data').getRange(sheet.getLastRow() + 1,1,calculatedPrices.length,calculatedPrices[0].length).setValues(calculatedPrices);
 
 }
+
 
 
 // log and stats
@@ -199,7 +216,6 @@ sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,3).setValue(calcul
 sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,4).setValue(executiontime);
 sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,5).setValue(mode);
 sheet.getSheetByName('Stats').getRange(sheet.getLastRow() + 0,6).setValue(filterAttValues);
-
 
 SpreadsheetApp.getActive().toast("You priced " + calculatedPrices.length + " combinations from " + attCount + " attributes in " + executiontime);
 
